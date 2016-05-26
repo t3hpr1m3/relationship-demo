@@ -1,0 +1,7 @@
+= form_for @actor do |f|
+  = field_set_tag do
+    %dl.formfields
+      %dt= f.label :name
+      %dd= f.text_field :name, size: 20
+    %p.centered
+      = f.submit 'Create Actor'

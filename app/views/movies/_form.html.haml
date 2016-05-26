@@ -1,0 +1,7 @@
+= form_for @movie do |f|
+  = field_set_tag do
+    %dl.formfields
+      %dt= f.label :title
+      %dd= f.text_field :title, size: 20
+    %p.centered
+      = f.submit 'Create Movie'
