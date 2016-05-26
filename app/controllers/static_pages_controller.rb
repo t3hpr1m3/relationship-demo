@@ -1,7 +1,9 @@
 class StaticPagesController < ApplicationController
-  respond_to :html
-
   def index
-    respond_with @movies = Movie.all
+    @movies = Movie.all
+    @actors = Actor.all
+    respond_to do |format|
+      format.html { render 'index' }
+    end
   end
 end

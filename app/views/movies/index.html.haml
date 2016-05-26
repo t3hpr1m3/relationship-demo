@@ -1,3 +1,20 @@
-%h2 Movies
+.row
+  .col-md-8
+    %h2
+      Movies
+      = render 'shared/breadcrumbs', filter: @filter
+  .col-md-4
+    = form_tag request.fullpath, method: :get do
+      .input-group
+        - @filter.filters.each do |key, value|
+          - unless ['title'].include?(key)
+            %input{type: 'hidden', name: key, value: value}
+        %input.form-control{type: 'text', placeholder: 'Movie search', name: 'search.title'}
+        %span.input-group-addon
+          %button{type: 'submit'}
+            %span.glyphicon.glyphicon-search
+
+- if @filter.active?
+  = link_to 'Back to All Movies', movies_url
 = render 'listing', movies: @movies
 = link_to 'Add a Movie', new_movie_url, class: 'btn btn-primary'

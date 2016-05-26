@@ -1,3 +1,17 @@
-%h2 Actors
+.row
+  .col-md-8
+    %h2
+      Actors
+      = render 'shared/breadcrumbs', filter: @filter
+  .col-md-4
+    = form_tag actors_path, method: :get do
+      .input-group
+        %input.form-control{type: 'text', placeholder: 'Actor search', name: 'search.name'}
+        %span.input-group-addon
+          %button{type: 'submit'}
+            %span.glyphicon.glyphicon-search
+
+- if @filter.active?
+  = link_to 'Back to All Actors', actors_url
 = render 'listing', actors: @actors
 = link_to 'Add an Actor', new_actor_url, class: 'btn btn-primary'

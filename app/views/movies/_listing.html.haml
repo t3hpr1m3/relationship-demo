@@ -11,4 +11,4 @@
           - unless movie.actors.empty?
             %ul.list-unstyled
               - movie.actors.each do |actor|
-                %li= link_to actor.name, actor
+                %li= link_to actor.name, movies_url('actors.name' => actor.name)

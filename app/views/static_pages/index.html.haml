@@ -1,6 +1,6 @@
 %h2 Movies
-= render 'movies/listing', movies: Movie.all
+= render 'movies/listing', movies: @movies
 %h2 Actors
-= render 'actors/listing', actors: Actor.all
+= render 'actors/listing', actors: @actors
 = link_to 'Add Movie', new_movie_path, class: 'btn btn-primary'
 = link_to 'Add Actor', new_actor_path, class: 'btn btn-primary'
