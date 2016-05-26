@@ -52,7 +52,7 @@ class ActorsController < ApplicationController
   private
 
   def actor_params
-    params.require(:actor).permit(:name, movie_ids: [])
+    params.require(:actor).permit(:name, :thumbnail_url, movie_ids: [])
   end
 
   def load_movies

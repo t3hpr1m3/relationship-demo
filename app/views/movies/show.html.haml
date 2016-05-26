@@ -1,10 +1,17 @@
 %h3= @movie.title
-.featuring
-  %h4 Featuring
-  %ul.list-group
-    - @movie.actors.each do |actor|
-      %li.list-group-item
-        = link_to actor.name, actor
+.col-xs-6.col-md-3
+  .thumbnail
+    - if @movie.thumbnail_url.present?
+      %img{src: @movie.thumbnail_url}
+    - else
+      %img{src: image_url('camera.png')}
+  .featuring
+    %h4 Featuring
+    %ul.list-group
+      - @movie.actors.each do |actor|
+        %li.list-group-item
+          = link_to actor.name, actor
 
-= link_to 'Edit', edit_movie_url(@movie), class: 'btn btn-primary'
-= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'
+.col-xs-6.col-md-3
+  = link_to 'Edit', edit_movie_url(@movie), class: 'btn btn-primary'
+  = link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'

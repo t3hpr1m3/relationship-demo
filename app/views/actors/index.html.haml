@@ -1,14 +1,3 @@
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Featured In
-  %tbody
-    - @actors.each do |actor|
-      %tr{data: { actor: "#{actor.name}" } }
-        %td= link_to actor.name, actor
-        %td
-          - unless actor.movies.empty?
-            - actor.movies.each do |movie|
-              = link_to movie.title, movie
+%h2 Actors
+= render 'listing', actors: @actors
 = link_to 'Add an Actor', new_actor_url, class: 'btn btn-primary'

@@ -1,0 +1,14 @@
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Cast
+  %tbody
+    - movies.each do |movie|
+      %tr{data: { movie: "#{movie.title}" } }
+        %td= link_to movie.title, movie
+        %td
+          - unless movie.actors.empty?
+            %ul.list-unstyled
+              - movie.actors.each do |actor|
+                %li= link_to actor.name, actor

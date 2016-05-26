@@ -11,7 +11,7 @@ feature 'Movie management' do
     expect(page).to have_link(actor.name)
   end
 
-  scenario 'Creating a movie with valid input' do
+  scenario 'Creating a movie with a valid title' do
     visit root_path
     click_link 'Add Movie'
     fill_in 'Title', with: 'Top Gun'
