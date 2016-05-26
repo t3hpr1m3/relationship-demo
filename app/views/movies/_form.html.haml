@@ -1,7 +1,9 @@
 = form_for @movie do |f|
-  = field_set_tag do
-    %dl.formfields
-      %dt= f.label :title
-      %dd= f.text_field :title, size: 20
-    %p.centered
-      = f.submit 'Create Movie'
+  %fieldset.form-group
+    = f.label :title
+    = f.text_field :title, size: 20, class: 'form-control'
+  %fieldset.form-group
+    = f.label :actor_ids, 'Actors'
+    = collection_check_boxes(:movie, :actor_ids, @actors, :id, :name, class: 'form-control')
+    = link_to 'Add an actor', new_actor_url
+  = f.submit 'Create Movie', class: 'btn btn-primary'

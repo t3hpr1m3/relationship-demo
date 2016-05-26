@@ -1,0 +1,13 @@
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Cast
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= link_to movie.title, movie
+        %td
+          - unless movie.actors.empty?
+            - movie.actors.each do |actor|
+              = link_to actor.name, actor

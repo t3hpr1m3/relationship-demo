@@ -1,6 +1,10 @@
 class ActorsController < ApplicationController
   respond_to :html
 
+  def index
+    respond_with @actors = Actor.all
+  end
+
   def show
     respond_with @actor = Actor.find(params[:id])
   end
