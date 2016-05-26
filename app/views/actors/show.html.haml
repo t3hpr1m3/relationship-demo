@@ -1,1 +1,10 @@
 %h3= @actor.name
+.appearing_in
+  %h4 Appears in
+  %ul.list-group
+  - @actor.movies.each do |movie|
+    %li.list-group-item
+      = link_to movie.title, movie
+
+= link_to 'Edit', edit_actor_url(@actor), class: 'btn btn-primary'
+= link_to 'Delete', @actor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'

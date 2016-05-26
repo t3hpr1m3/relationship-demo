@@ -1,0 +1,8 @@
+- if model.errors.any?
+  .panel.panel-danger
+    .panel-heading
+      %h4.panel-title Unable to save movie:
+    .panel-body
+      %ul.list-group
+        - model.errors.each do |attr, msg|
+          %li.list-group-item.list-group-item-danger= msg

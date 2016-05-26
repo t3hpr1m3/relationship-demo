@@ -1,7 +1,13 @@
 = form_for @actor do |f|
-  = field_set_tag do
-    %dl.formfields
-      %dt= f.label :name
-      %dd= f.text_field :name, size: 20
-    %p.centered
-      = f.submit 'Create Actor'
+  = render 'shared/model_errors', model: @actor
+  %fieldset.form-group
+    = f.label :name, class: 'control-label'
+    = f.text_field :name, size: 20, class: 'form-control'
+  %fieldset.form-group
+    %legend.form-control-label Featured in
+    = collection_check_boxes(:actor, :movie_ids, @movies, :id, :title, class: 'form-control') do |b|
+      .checkbox
+        = b.label(class: 'form-control-label') { b.check_box(class: 'check_box') + b.text }
+    = link_to 'Add a movie', new_movie_url
+  = f.submit save_button_text(@actor), class: 'btn btn-primary'
+  = link_to 'Cancel', @actor.new_record? ? actors_url : @actor, class: 'btn btn-primary'

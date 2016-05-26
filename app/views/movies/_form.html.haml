@@ -1,9 +1,13 @@
 = form_for @movie do |f|
+  = render 'shared/model_errors', model: @movie
   %fieldset.form-group
-    = f.label :title
+    = f.label :title, class: 'control-label'
     = f.text_field :title, size: 20, class: 'form-control'
   %fieldset.form-group
-    = f.label :actor_ids, 'Actors'
-    = collection_check_boxes(:movie, :actor_ids, @actors, :id, :name, class: 'form-control')
+    %legend.form-control-label Cast
+    = collection_check_boxes(:movie, :actor_ids, @actors, :id, :name, class: 'form-control') do |b|
+      .checkbox
+        = b.label(class: 'form-control-label') { b.check_box(class: 'check_box') + b.text }
     = link_to 'Add an actor', new_actor_url
-  = f.submit 'Create Movie', class: 'btn btn-primary'
+  = f.submit save_button_text(@movie), class: 'btn btn-primary'
+  = link_to 'Cancel', @movie.new_record? ? movies_url : @movie, class: 'btn btn-primary'

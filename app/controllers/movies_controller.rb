@@ -1,6 +1,9 @@
 class MoviesController < ApplicationController
   respond_to :html
 
+  # this is really heavy.  Should probably move to a javascript form
+  before_action :load_actors, only: [:new, :create, :edit, :update]
+
   def index
     respond_with @movies = Movie.all
   end
@@ -10,12 +13,6 @@ class MoviesController < ApplicationController
   end
 
   def new
-    #
-    # Need to clean this up once we have a more robust form in place, as
-    # this is potentially really expensive/heavy
-    #
-    @actors = Actor.all
-
     respond_with @movie = Movie.new
   end
 
@@ -28,9 +25,37 @@ class MoviesController < ApplicationController
     respond_with @movie
   end
 
+  def edit
+    respond_with @movie = Movie.find(params[:id])
+  end
+
+  def update
+    @movie = Movie.find(params[:id])
+    if @movie.update_attributes(movie_params)
+      flash[:notice] = 'Movie updated successfully.'
+    end
+
+    respond_with @movie, location: movies_url
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    respond_with @movie, location: root_url if @movie.nil?
+
+    @movie.destroy
+
+    flash[:notice] = 'Movie successfully deleted.'
+
+    respond_with @movie
+  end
+
   private
 
   def movie_params
-    params.require(:movie).permit(:title)
+    params.require(:movie).permit(:title, actor_ids: [])
+  end
+
+  def load_actors
+    @actors = Actor.all
   end
 end

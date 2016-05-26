@@ -5,9 +5,10 @@
       %th Cast
   %tbody
     - @movies.each do |movie|
-      %tr
+      %tr{data: { movie: "#{movie.title}" } }
         %td= link_to movie.title, movie
         %td
           - unless movie.actors.empty?
             - movie.actors.each do |actor|
               = link_to actor.name, actor
+= link_to 'Add a Movie', new_movie_url, class: 'btn btn-primary'

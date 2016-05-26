@@ -18,6 +18,15 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        movie:
+          attributes:
+            title:
+              taken: 'Movie already exists.'
+        actor:
+          attributes:
+            name:
+              taken: 'Actor already exists.'
