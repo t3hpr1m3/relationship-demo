@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   before_action :load_actors, only: [:new, :create, :edit, :update]
 
   def index
-    @filter = Filter.new(%w(title actors.name), params)
+    @filter = Filter.new({ title: :title, actor: 'actors.name' }, params)
     respond_with @movies = @filter.apply(Movie)
   end
 

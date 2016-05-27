@@ -8,13 +8,21 @@ class Filter
     @params = params.stringify_keys
     @searches = {}
     @filters = {}
+
     keys.each do |key|
-      if params.key?(key) && params[key].present?
-        @filters[key] = params[key]
+      param_name = key
+      filter_name = key
+      if key.is_a?(Array)
+        param_name = key.first
+        filter_name = key.last
       end
 
-      if params.key?("search.#{key}") && params["search.#{key}"].present?
-        @searches[key] = params["search.#{key}"]
+      if params.key?(param_name) && params[param_name].present?
+        @filters[filter_name] = params[param_name]
+      end
+
+      if params.key?("search.#{param_name}") && params["search.#{param_name}"].present?
+        @searches[filter_name] = params["search.#{param_name}"]
       end
     end
   end

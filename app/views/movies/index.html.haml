@@ -6,9 +6,6 @@
   .col-md-4
     = form_tag request.fullpath, method: :get do
       .input-group
-        - @filter.filters.each do |key, value|
-          - unless ['title'].include?(key)
-            %input{type: 'hidden', name: key, value: value}
         %input.form-control{type: 'text', placeholder: 'Movie search', name: 'search.title'}
         %span.input-group-addon
           %button{type: 'submit'}

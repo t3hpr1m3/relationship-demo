@@ -4,7 +4,7 @@
       Actors
       = render 'shared/breadcrumbs', filter: @filter
   .col-md-4
-    = form_tag actors_path, method: :get do
+    = form_tag request.fullpath, method: :get do
       .input-group
         %input.form-control{type: 'text', placeholder: 'Actor search', name: 'search.name'}
         %span.input-group-addon
